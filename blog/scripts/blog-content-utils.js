@@ -1,4 +1,5 @@
 const relatedBlogs = document.getElementById('related-blogs')
+const commentBlog = document.getElementById('comment-blog')
 
 async function main() {
   // ข้อ 2: เพิ่มการอ่านภาษาเข้ามา
@@ -28,6 +29,15 @@ async function main() {
       })
       relatedBlogs.blogs = blogsData
     })
+
+    // ข้อ 4(adv): ดึง Blog id จาก url
+    const blogId = location.href.split('/').pop().split('.')[0]
+    // หยิบ blog จากการ search id
+    const selectedBlog = blogsData.find(blog => blog.id === blogId)
+
+    // ส่ง blog id และ comment เข้า comment blog
+    commentBlog.blogId = blogId
+    commentBlog.comments = selectedBlog.comments
   } catch (error) {
     console.log(error)
   }
