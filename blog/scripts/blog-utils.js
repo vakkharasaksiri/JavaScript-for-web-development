@@ -1,7 +1,11 @@
 const blogContainer = document.getElementById('blog-container')
 const categorySelect = document.getElementById('category-select')
+const showMore = document.getElementById('show-more')
 
 let blogsData = []
+
+let page = 1
+let pagePerItems = 2
 
 // create DOM div with new html
 function createDOMDiv(blog) {
@@ -33,7 +37,9 @@ function createDOMDiv(blog) {
 
 // use result from createDOMDiv() to append to blogContainer
 function createBlog(blogs) {
-  blogs.forEach((blog) => {
+  const startIndex = (page - 1) * pagePerItems
+  selectedBlogs = blogs.slice((page - 1) * pagePerItems, startIndex + pagePerItems)
+  selectedBlogs.forEach((blog) => {
     blogContainer.append(createDOMDiv(blog))
   })
 }
@@ -51,11 +57,31 @@ function createCategory(blogs) {
   })
 }
 
+function addPagination(blogs) {
+  page = 1
+  if (page * pagePerItems > blogs.length) {
+    showMore.style.display = 'none'
+    return false
+  }
+
+  showMore.style.display = 'inline-block'
+
+  showMore.onclick = function() {
+    page++
+    createBlog(blogs)
+
+    if (page * pagePerItems > blogs.length) {
+      showMore.style.display = 'none'
+    }
+  }
+}
+
 async function main() {
   // fetch data from blogs.json
   try {
     const response = await fetch('/scripts/blogs.json')
     blogsData = await response.json()
+    addPagination(blogsData)
     createBlog(blogsData)
     createCategory(blogsData)
   } catch (error) {
@@ -79,6 +105,7 @@ function searchBlogs(element) {
     const filteredBlogs = blogsData.filter((blog) =>
       blog.title.toLowerCase().includes(searchTerm.toLowerCase())
     )
+    addPagination(filteredBlogs)
     createBlog(filteredBlogs)
   }, doneTypingInterval)
 }
@@ -95,6 +122,7 @@ function sortBlogs(element) {
       return dateB - dateA
     }
   })
+  addPagination(sortedBlogs)
   createBlog(sortedBlogs)
 }
 
@@ -109,5 +137,6 @@ function categoryBlogs(element) {
     filteredBlogs = filteredBlogs.filter((blog) => blog.category === category)
   }
 
+  addPagination(filteredBlogs)
   createBlog(filteredBlogs)
 }

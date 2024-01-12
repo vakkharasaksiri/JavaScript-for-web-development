@@ -38,5 +38,21 @@
     "url": "/src/blogs/test-5.html",
     "publishedDate": "2024-01-01T09:00:00",
     "category": "news"
+  },
+  {
+    "title": "Why do we use it?",
+    "description": "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).",
+    "imageUrl": "https://fastly.picsum.photos/id/51/300/200.jpg?hmac=5mfl06oHwihfw7G6g-aXi33LWX4pHnsg43TLfZsTyf0",
+    "url": "/src/blogs/test-4.html",
+    "publishedDate": "2024-01-08T09:00:00",
+    "category": "food"
+  },
+  {
+    "title": "Where can I get some?",
+    "description": "the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text. All the Lorem Ipsum",
+    "imageUrl": "https://fastly.picsum.photos/id/231/300/200.jpg?hmac=g3s9F64ZESEbYB6yZSjNfeuWzZSP_5AHBaZbTAeC1Fs",
+    "url": "/src/blogs/test-5.html",
+    "publishedDate": "2024-01-01T09:00:00",
+    "category": "news"
   }
 ]
