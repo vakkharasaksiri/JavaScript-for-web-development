@@ -48,8 +48,9 @@ async function main() {
 
   // fetch data from blogs.json
   try {
-    const response = await fetch('/scripts/blogs.json')
-    blogsRawData = await response.json()
+    // ข้อ 1 (adv): เปลี่ยนมาดึงข้อมูลผ่าน API และใช้ axios แทน
+    const response = await axios.get('https://656469caceac41c0761e22d5.mockapi.io/blogs')
+    blogsRawData = response.data
     // ข้อ 2: แปลงข้อมูลให้เป็นไปตาม pattern เดิมของข้อมูลที่ใช้ เพื่อจะได้ไม่ต้องเปลี่ยน code จุดอื่น
     blogsData = blogsRawData.map(blog => {
       blog.title = blog.localization[language].title
