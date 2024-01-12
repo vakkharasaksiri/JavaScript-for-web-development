@@ -1,9 +1,7 @@
 class MyFooter extends HTMLElement {
   constructor() {
     super()
-    const template = document.createElement('template')
-
-    template.innerHTML = `
+    this.innerHTML = `
       <footer class="flex flex-col text-white justify-center w-full px-8">
         <section class="flex justify-between">
           <div class="flex flex-col gap-6 w-2/6">
@@ -53,8 +51,6 @@ class MyFooter extends HTMLElement {
         </section>
       </footer>
       `
-
-    this.appendChild(template.content.cloneNode(true))
 
     // ข้อ4: เพิ่ม on submit สำหรับการส่ง subscribe
     this.onSubmit = async (event) => {

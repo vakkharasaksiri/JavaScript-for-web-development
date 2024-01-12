@@ -6,9 +6,7 @@ class MyNavbar extends HTMLElement {
   }
 
   initTemplate() {
-    const template = document.createElement('template')
-
-    template.innerHTML = `
+    this.innerHTML = `
     <nav class="bg-wd-darkgrey text-white">
       <div class="max-w-6xl mx-auto px-4">
           <div class="flex justify-between">
@@ -29,8 +27,6 @@ class MyNavbar extends HTMLElement {
       </div>
     </nav>
     `
-
-    this.appendChild(template.content.cloneNode(true))
   }
 
   // ข้อ 2: เพิ่ม function สำหรับเปลี่ยนภาษา
