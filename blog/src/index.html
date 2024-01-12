@@ -227,6 +227,11 @@
         showSlide(slideNumber)
       }
 
+      // ข้อ 3: loop slideNumber
+      setInterval(() => {
+        increaseSlideNumber(1)
+      }, 5000)
+
       function showSlide(n) {
         const imageSlides = document.getElementsByClassName('my-slides')
         const dotNavs = document.getElementsByClassName('dot-nav')

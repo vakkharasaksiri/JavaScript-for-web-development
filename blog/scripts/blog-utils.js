@@ -45,7 +45,9 @@ function createCategory(blogs) {
     const newOption = document.createElement('option')
     newOption.value = category
     newOption.innerText = category
-    categorySelect.append(newOption)
+    if (categorySelect) {
+      categorySelect.append(newOption)
+    }
   })
 }
 
