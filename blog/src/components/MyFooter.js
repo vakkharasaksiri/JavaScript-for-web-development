@@ -14,7 +14,7 @@ class MyFooter extends HTMLElement {
               bla.... bla bla bla.... bla bla bla.... bla bla bla.... I’m
               available for hiring.
             </p>
-            <form onsubmit="onSubmit(event)" class="flex flex-col gap-4">
+            <form id="subscribe" class="flex flex-col gap-4">
               <input
                 type="email"
                 name="myEmail"
@@ -55,6 +55,28 @@ class MyFooter extends HTMLElement {
       `
 
     this.appendChild(template.content.cloneNode(true))
+
+    // ข้อ4: เพิ่ม on submit สำหรับการส่ง subscribe
+    this.onSubmit = async (event) => {
+      event.preventDefault() // Prevent the default form submission
+      const email = event.target.myEmail.value // Extract the email from the form
+
+      try {
+        // Use Axios to send the data
+        await axios.post('https://656469caceac41c0761e22d5.mockapi.io/users', {
+          email: email,
+          name: 'subscribe',
+        })
+        alert('ทำการ Subscribe เรียบร้อย')
+      } catch (error) {
+        console.error('Error sending email:', error)
+        alert('มีปัญหาขณะ Subscribe')
+      }
+    }
+
+    // Attach the onSubmit function to the form
+    const form = this.querySelector('form#subscribe')
+    form.addEventListener('submit', this.onSubmit)
   }
 }
 
