@@ -2,6 +2,11 @@ const blogContainer = document.getElementById('blog-container')
 
 let blogsData = []
 
+// ข้อ 2: เพิ่มต้นฉบับไว้เพื่อให้สามารถใช้งาน search ได้โดยไม่ต้องโหลดใหม่
+let blogsRawData = []
+
+let language = 'en'
+
 // create DOM div with new html
 function createDOMDiv(blog) {
   // convert blog.publishedDate to date format dd/mm/yyyy
@@ -38,11 +43,32 @@ function createBlog(blogs) {
 }
 
 async function main() {
+  // ข้อ 2: เพิ่มการอ่านภาษาเข้ามา
+  language = localStorage.getItem('language') || 'en'
+
   // fetch data from blogs.json
   try {
     const response = await fetch('/scripts/blogs.json')
-    blogsData = await response.json()
+    blogsRawData = await response.json()
+    // ข้อ 2: แปลงข้อมูลให้เป็นไปตาม pattern เดิมของข้อมูลที่ใช้ เพื่อจะได้ไม่ต้องเปลี่ยน code จุดอื่น
+    blogsData = blogsRawData.map(blog => {
+      blog.title = blog.localization[language].title
+      blog.description = blog.localization[language].description
+      return blog
+    })
     createBlog(blogsData)
+
+    // ข้อ 2: เพิ่ม event listener for language change
+    document.addEventListener('languageChanged', function (event) {
+      language = event.detail.language
+      blogsData = blogsRawData.map(blog => {
+        blog.title = blog.localization[language].title
+        blog.description = blog.localization[language].description
+        return blog
+      })
+      blogContainer.innerHTML = ''
+      createBlog(blogsData)
+    })
   } catch (error) {
     console.log(error)
   }
