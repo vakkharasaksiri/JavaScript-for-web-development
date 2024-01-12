@@ -1,4 +1,5 @@
 const blogContainer = document.getElementById('blog-container')
+const categorySelect = document.getElementById('category-select')
 
 let blogsData = []
 
@@ -37,19 +38,30 @@ function createBlog(blogs) {
   })
 }
 
+function createCategory(blogs) {
+  let categorys = blogs.map((blog) => blog.category)
+  categorys = [...new Set(categorys)]
+  categorys.forEach((category) => {
+    const newOption = document.createElement('option')
+    newOption.value = category
+    newOption.innerText = category
+    categorySelect.append(newOption)
+  })
+}
+
 async function main() {
   // fetch data from blogs.json
   try {
     const response = await fetch('/scripts/blogs.json')
     blogsData = await response.json()
     createBlog(blogsData)
+    createCategory(blogsData)
   } catch (error) {
     console.log(error)
   }
 }
 
 main()
-
 
 /* ข้อ 2: สามารถค้นหาและเรียงข้อมูลตามเวลาได้ */
 let typingTimer
@@ -69,7 +81,6 @@ function searchBlogs(element) {
   }, doneTypingInterval)
 }
 
-
 function sortBlogs(element) {
   blogContainer.innerHTML = ''
   const sortBy = element.value
@@ -86,3 +97,15 @@ function sortBlogs(element) {
 }
 
 /* ข้อ 2: จบส่วน code */
+
+function categoryBlogs(element) {
+  blogContainer.innerHTML = ''
+  const category = element.value
+  let filteredBlogs = blogsData
+
+  if (category) {
+    filteredBlogs = filteredBlogs.filter((blog) => blog.category === category)
+  }
+
+  createBlog(filteredBlogs)
+}

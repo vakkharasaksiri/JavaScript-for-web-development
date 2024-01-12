@@ -67,6 +67,10 @@
           placeholder="Search Blog..."
         />
 
+        <select id="category-select" onchange="categoryBlogs(this)">
+          <option value="">Select Category</option>
+        </select>
+
         <select onchange="sortBlogs(this)">
           <option>Sort</option>
           <option value="desc">Newest</option>
