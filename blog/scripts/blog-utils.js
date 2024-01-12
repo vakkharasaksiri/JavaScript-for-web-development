@@ -11,11 +11,12 @@ function createDOMDiv(blog) {
   }/${date.getFullYear()}`
 
   const newDiv = document.createElement('div')
-  newDiv.classList.add('flex', 'gap-6', 'w-full')
+  newDiv.classList.add('flex', 'flex-col', 'md:flex-row', 'gap-6', 'w-full')
   newDiv.innerHTML = `
   <img
     src="${blog.imageUrl}"
     alt="feature image 1"
+    class="w-full md:w-auto"
   />
   <div class="flex flex-col gap-4 bg-wd-darkgrey p-6 grow">
     <h3 class="text-2xl font-semibold">${blog.title}</h3>
