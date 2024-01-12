@@ -1,6 +1,6 @@
 [
   {
-    "id": 1,
+    "id": "1",
     "localization": {
       "en": {
         "title": "Forward Integration Executive",
@@ -16,7 +16,7 @@
     "publishedDate": "2024-01-04T09:00:00"
   },
   {
-    "id": 2,
+    "id": "2",
     "localization": {
       "en": {
         "title": "Future Data Director",
@@ -32,7 +32,7 @@
     "publishedDate": "2024-01-03T09:00:00"
   },
   {
-    "id": 3,
+    "id": "3",
     "localization": {
       "en": {
         "title": "Direct Solutions Administrator",
