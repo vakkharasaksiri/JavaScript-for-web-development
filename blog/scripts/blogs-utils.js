@@ -1,6 +1,7 @@
 console.log("Hello Skooldio")
 
 const blogElement =document.getElementById('blog-container')
+let blogsRawData =[];
 
 function createBlogHTML(blogs) {
     // วนแต่ละตัวของ blogs ด้วย .map เพื่อทำการแปลงเป็น html ออกมา
@@ -44,14 +45,24 @@ function createBlogHTML(blogs) {
 //  Another method to import json file but didnt use alot
 //  import blogs from './blogs.json'
 
+
+function searchBlogs(element){
+    const filteredBlogs = blogsRawData.filter(function(blog){
+        return blog.title.toLowerCase().includes(element.value.toLowerCase()) || blog.description.toLowerCase().includes(element.value.toLowerCase())
+
+    })
+
+    createBlogHTML(filteredBlogs)
+}
+
+
+
  async function main(){
     const response = await axios.get('/scripts/blogs.json');
-    // console.log(response.data)
+    blogsRawData = response.data;
 
-    const blogs = response.data;
-    console.log(blogs)
     // ทำการนำ response.data ส่งเข้าไปใน createBlogHTML เป็น array ของ blogs
-    createBlogHTML(blogs)
+    createBlogHTML(blogsRawData)
  }
 
 
