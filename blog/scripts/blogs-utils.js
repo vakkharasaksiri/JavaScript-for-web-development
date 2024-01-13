@@ -22,7 +22,7 @@ function createBlogHTML(blogs) {
                 ${blog.description}
             </p>
             <p>At ${blog.publishedDate}</p>
-            <a href="blogs/test.html">Read more</a>
+            <a href="${blog.url}">Read more</a>
             </div>
         </div>`
     }).join('');
