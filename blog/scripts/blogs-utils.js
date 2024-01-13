@@ -64,6 +64,22 @@ function searchBlogs(element){
         createBlogHTML(filteredBlogs)
     }, 2000);
 }
+
+function sortBlogs(element){
+    console.log(element.value)
+
+
+    const sortedBlogs = blogsRawData.sort(function(blogA,blogB){
+        let compareDate = new Date(blogA.publishedDate) - new Date(blogB.publishedDate)
+
+        if(element.value === 'desc'){
+            compareDate = new Date(blogB.publishedDate) - new Date(blogA.publishedDate)
+        }
+
+        return compareDate
+    })
+    createBlogHTML(sortedBlogs)
+}
    
  async function main(){
     const response = await axios.get('/scripts/blogs.json');
