@@ -35,9 +35,22 @@ const blog = {
 
  createBlogHTML(blog)
 
+ 
+//  Another method to import json file but didnt use alot
+//  import blogs from './blogs.json'
+
  async function main(){
     const response = await axios.get('/scripts/blogs.json')
     console.log(response.data)
+    // ทำการนำ response.data ส่งเข้าไปใน createBlogHTML เป็น array ของ blogs
+
+
+    // วนแต่ละตัวของ blogs ด้วย .map เพื่อทำการแปลงเป็น html ออกมา
+
+
+    // ต่อ html ทั้งหมดเพือ่ใส่ใน blogElement.innerHTML
+
+    
  }
 
 
