@@ -2,6 +2,7 @@ console.log("Hello Skooldio")
 
 const blogElement =document.getElementById('blog-container')
 let blogsRawData =[];
+let loadingTimeout = {};
 
 function createBlogHTML(blogs) {
     // วนแต่ละตัวของ blogs ด้วย .map เพื่อทำการแปลงเป็น html ออกมา
@@ -47,16 +48,23 @@ function createBlogHTML(blogs) {
 
 
 function searchBlogs(element){
-    const filteredBlogs = blogsRawData.filter(function(blog){
-        return blog.title.toLowerCase().includes(element.value.toLowerCase()) || blog.description.toLowerCase().includes(element.value.toLowerCase())
 
-    })
+    // แสดง Loading.... ขึ้นมา 2 วินาทีก่อน ผลออกมา
 
-    createBlogHTML(filteredBlogs)
+    // Clear the timer first
+    clearTimeout(loadingTimeout)
+    
+    blogElement.innerHTML = 'Loading.......'
+
+    loadingTimeout = setTimeout(function () {
+        const filteredBlogs = blogsRawData.filter(function(blog){ 
+            return blog.title.toLowerCase().includes(element.value.toLowerCase()) || blog.description.toLowerCase().includes(element.value.toLowerCase())
+    
+        })
+        createBlogHTML(filteredBlogs)
+    }, 2000);
 }
-
-
-
+   
  async function main(){
     const response = await axios.get('/scripts/blogs.json');
     blogsRawData = response.data;
